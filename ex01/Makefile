@@ -6,7 +6,7 @@ GREEN=\033[0;32m
 RESET=\033[0m
 SRC_FILES = main.cpp \
 
-OBJECTS = $(SRC_FILES:.c=.o)
+OBJECTS = $(SRC_FILES:.cpp=.o)
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
