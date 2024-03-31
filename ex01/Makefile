@@ -5,6 +5,8 @@ GOLD_COLOR=\033[38;5;220m
 GREEN=\033[0;32m
 RESET=\033[0m
 SRC_FILES = main.cpp \
+			Phonebook.cpp \
+			Contact.cpp \
 
 OBJECTS = $(SRC_FILES:.cpp=.o)
 CC = c++

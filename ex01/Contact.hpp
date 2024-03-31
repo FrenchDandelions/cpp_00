@@ -42,11 +42,5 @@ class Contact
 
 };
 
-Contact::Contact()
-{
-}
 
-Contact::~Contact()
-{
-}
 

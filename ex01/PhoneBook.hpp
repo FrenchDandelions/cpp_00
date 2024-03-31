@@ -11,6 +11,8 @@ class PhoneBook
 
         int NbContacts;
 
+        int CurrContact;
+
     public:
 
         PhoneBook();
@@ -20,12 +22,14 @@ class PhoneBook
         void SetContact();
 
         void ResetContacts(){
-            if(NbContacts == 7)
-                NbContacts = 0;
+            if(NbContacts > 7 && CurrContact > 7)
+                CurrContact = 0;
         }
 
         void AddNbContacts(){
-            NbContacts++;
+            if(NbContacts < 8)
+                NbContacts++;
+            CurrContact++;
             ResetContacts();
         }
 
@@ -43,16 +47,10 @@ class PhoneBook
 
         void EnterDarkestSecret();
 
+        void PrintContacts();
+
 };
 
-PhoneBook::PhoneBook() : NbContacts(0)
-{
-    std::cout << "Creating Phonebook" << std::endl;
-}
 
-PhoneBook::~PhoneBook()
-{
-    std::cout << "Destroying Phonebook" << std::endl;
-}
 
 
