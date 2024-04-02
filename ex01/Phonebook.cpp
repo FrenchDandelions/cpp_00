@@ -13,42 +13,51 @@ PhoneBook::~PhoneBook()
     std::cout << "Destroying Phonebook" << std::endl;
 }
 
-void PhoneBook::EnterName()
+void PhoneBook::EnterName(int &exit)
 {
     std::string str;
     std::cout << "Enter Name :" << std::endl;
     while(1)
     {
-        getline(std::cin, str);
-        if(!str[0])
+        if(!getline(std::cin, str)){
+            exit = 1;
+            break;
+        }
+        if(str.empty())
             continue;
         Book[CurrContact].SetName(str);
         break;
     }
 }
 
-void PhoneBook::EnterLastName()
+void PhoneBook::EnterLastName(int &exit)
 {
     std::string str;
     std::cout << "Enter Last Name :" << std::endl;
     while(1)
     {
-        getline(std::cin, str);
-        if(!str[0])
+        if(!getline(std::cin, str)){
+            exit = 1;
+            break;
+        }
+        if(str.empty())
             continue;
         Book[CurrContact].SetLastName(str);
         break;
     }
 }
 
-void PhoneBook::EnterNickName()
+void PhoneBook::EnterNickName(int &exit)
 {
     std::string str;
     std::cout << "Enter Nickname :" << std::endl;
     while(1)
     {
-        getline(std::cin, str);
-        if(!str[0])
+        if(!getline(std::cin, str)){
+            exit = 1;
+            break;
+        }
+        if(str.empty())
             continue;
         Book[CurrContact].SetNickName(str);
         break;
@@ -77,40 +86,56 @@ bool IsAllDigit(const std::string &str)
     return(true);
 }
 
-void PhoneBook::EnterPhoneNumber()
+void PhoneBook::EnterPhoneNumber(int &exit)
 {
     std::string str;
     std::cout << "Enter Phonenumber :" << std::endl;
     while(1)
     {
-        getline(std::cin, str);
-        if(!str[0] || IsOnlyDigits(str) == false)
+        if(!getline(std::cin, str)){
+            exit = 1;
+            break;
+        }
+        if(str.empty() || IsOnlyDigits(str) == false)
             continue;
         Book[CurrContact].SetPhoneNumber(str);
         break;
     }
 }
 
-void PhoneBook::EnterDarkestSecret()
+void PhoneBook::EnterDarkestSecret(int &exit)
 {
     std::string str;
     std::cout << "Enter DarkestSecret :" << std::endl;
     while(1)
     {
-        getline(std::cin, str);
-        if(!str[0])
+        if(!getline(std::cin, str)){
+            exit = 1;
+            break;
+        }
+        if(str.empty())
             continue;
         Book[CurrContact].SetDarkestSecret(str);
         break;
     }
 }
 
-void PhoneBook::SetContact(){
-    EnterName();
-    EnterLastName();
-    EnterNickName();
-    EnterPhoneNumber();
-    EnterDarkestSecret();
+void PhoneBook::SetContact(int &exit){
+    EnterName(exit);
+    if(exit == 1|| std::cin.eof())
+        return;
+    EnterLastName(exit);
+    if(exit == 1|| std::cin.eof())
+        return;
+    EnterNickName(exit);
+    if(exit == 1|| std::cin.eof())
+        return;
+    EnterPhoneNumber(exit);
+    if(exit == 1|| std::cin.eof())
+        return;
+    EnterDarkestSecret(exit);
+    if(exit == 1|| std::cin.eof())
+        return;
     AddNbContacts();
 }
 
@@ -147,7 +172,7 @@ void PrintPrompt(){
     
 }
 
-void PhoneBook::PrintContacts(){
+void PhoneBook::PrintContacts(int &exit){
 
     PrintPrompt();
     for(int i = 0; i < NbContacts; i++)
@@ -186,7 +211,10 @@ void PhoneBook::PrintContacts(){
         while(1)
         {
             std::string str;
-            getline(std::cin, str);
+            if(!getline(std::cin, str)|| std::cin.eof()){
+                exit = 1;
+                break;
+            }
             if(str.empty())
                 continue;
             int index;

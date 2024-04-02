@@ -19,7 +19,7 @@ class PhoneBook
 
         ~PhoneBook();
 
-        void SetContact();
+        void SetContact(int &exit);
 
         void ResetContacts(){
             if(NbContacts > 7 && CurrContact > 7)
@@ -37,20 +37,16 @@ class PhoneBook
             return(NbContacts);
         }
 
-        void EnterName();
+        void EnterName(int &exit);
 
-        void EnterLastName();
+        void EnterLastName(int &exit);
 
-        void EnterNickName();
+        void EnterNickName(int &exit);
 
-        void EnterPhoneNumber();
+        void EnterPhoneNumber(int &exit);
 
-        void EnterDarkestSecret();
+        void EnterDarkestSecret(int &exit);
 
-        void PrintContacts();
+        void PrintContacts(int &exit);
 
 };
-
-
-
-
