@@ -25,14 +25,12 @@ int main(void)
         }
         else if (str == "SEARCH")
         {
-            std::cout << "Searching User..." << std::endl;
             Book1.PrintContacts(exit);
             if(exit == 1)
             {
                 std::cout << std::endl << "Exiting..." << std::endl;
                 break;
             }
-            std::cout << "Users found" << std::endl;
         }
         else if(str == "EXIT")
         {
